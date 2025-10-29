@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -15,14 +17,17 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    @Column(length = 30)
+    @Column(nullable = false, length = 50)
     private String metodo;
 
-    private double monto;
+    @Column(nullable = false)
+    private Double monto;
+
+    private Date fechaPago;
 
     @ManyToOne
-    @JoinColumn(name = "ventaId", nullable = false, foreignKey = @ForeignKey(name = "FK_PAGO_VENTA"))
+    @JoinColumn(name = "venta_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PAGO_VENTA"))
     private Venta venta;
 }

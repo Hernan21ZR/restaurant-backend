@@ -14,24 +14,31 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Producto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    private double precio;
+    @Column(columnDefinition = "TEXT")
+    private String descripcion;
+
+    @Column(nullable = false)
+    private Double precio;
+
+    @Column(nullable = false)
+    private Integer stockActual; // stock individual del producto
 
     @ManyToOne
-    @JoinColumn(name = "categoriaId", foreignKey = @ForeignKey(name = "FK_PRODUCTO_CATEGORIA"))
+    @JoinColumn(name = "categoria_id", nullable = false,
+            foreignKey = @ForeignKey(name = "FK_PRODUCTO_CATEGORIA"))
     private Categoria categoria;
 
     @ManyToOne
-    @JoinColumn(name = "inventarioId", foreignKey = @ForeignKey(name = "FK_PRODUCTO_INVENTARIO"))
+    @JoinColumn(name = "inventario_id", nullable = false,
+            foreignKey = @ForeignKey(name = "FK_PRODUCTO_INVENTARIO"))
     private Inventario inventario;
-
-    @OneToMany(mappedBy = "producto")
-    private List<DetallePedido> detalles;
 }

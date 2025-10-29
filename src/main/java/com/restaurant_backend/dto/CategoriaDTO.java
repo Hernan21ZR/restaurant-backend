@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class CategoriaDTO {
-    private int id;
+
+    private Integer id;
 
     @NotNull
-    @Size(min = 3, max = 70)
+    @Size(min = 3, max = 100)
     private String nombre;
 }

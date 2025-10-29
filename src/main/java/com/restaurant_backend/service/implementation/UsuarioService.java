@@ -1,9 +1,9 @@
 package com.restaurant_backend.service.implementation;
 
-import com.restaurant.model.Usuario;
-import com.restaurant.repository.IGenericRepository;
-import com.restaurant.repository.IUsuarioRepository;
-import com.restaurant.service.IUsuarioService;
+import com.restaurant_backend.model.Usuario;
+import com.restaurant_backend.repository.IGenericRepository;
+import com.restaurant_backend.repository.IUsuarioRepository;
+import com.restaurant_backend.service.IUsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

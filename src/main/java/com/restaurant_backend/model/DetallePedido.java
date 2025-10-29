@@ -15,16 +15,19 @@ public class DetallePedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    private int cantidad;
-    private double subtotal;
+    @Column(nullable = false)
+    private Integer cantidad;
+
+    @Column(nullable = false)
+    private Double subtotal;
 
     @ManyToOne
-    @JoinColumn(name = "pedidoId", nullable = false, foreignKey = @ForeignKey(name = "FK_DETALLE_PEDIDO"))
+    @JoinColumn(name = "pedido_id", nullable = false, foreignKey = @ForeignKey(name = "FK_DETALLE_PEDIDO_PEDIDO"))
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name = "productoId", nullable = false, foreignKey = @ForeignKey(name = "FK_DETALLE_PRODUCTO"))
+    @JoinColumn(name = "producto_id", nullable = false, foreignKey = @ForeignKey(name = "FK_DETALLE_PEDIDO_PRODUCTO"))
     private Producto producto;
 }

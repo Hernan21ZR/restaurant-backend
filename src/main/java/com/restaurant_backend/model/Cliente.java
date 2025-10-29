@@ -17,20 +17,15 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    @Column(nullable = false, length = 70)
-    private String nombre;
-
-    @Column(length = 60, unique = true)
-    private String correo;
-
-    @Column(length = 20)
+    @Column(length = 15)
     private String telefono;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Pedido> pedidos;
+    @Column(length = 255)
+    private String direccion;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Reserva> reservas;
+    @OneToOne
+    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_CLIENTE_USUARIO"))
+    private Usuario usuario;
 }

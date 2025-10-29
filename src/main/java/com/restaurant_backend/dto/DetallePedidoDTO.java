@@ -11,17 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class DetallePedidoDTO {
-    private int id;
-
-    @Min(1)
-    private int cantidad;
-
-    @PositiveOrZero
-    private double subtotal;
+    private Integer id;
 
     @NotNull
-    private int pedidoId;
+    private Integer cantidad;
 
     @NotNull
-    private int productoId;
+    private Double subtotal;
+
+    @NotNull
+    private PedidoDTO pedido;
+
+    @NotNull
+    private ProductoDTO producto;
 }

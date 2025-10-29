@@ -12,14 +12,15 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class VentaDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
     private Date fecha;
 
-    @PositiveOrZero
-    private double total;
-
     @NotNull
-    private int pedidoId;
+    private Double total;
+
+    private PedidoDTO pedido;
+
+    private ClienteDTO cliente;
 }

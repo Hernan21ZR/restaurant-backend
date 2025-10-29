@@ -17,19 +17,18 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHora;
-
-    @Column(length = 30)
     private String estado;
+    private Integer numeroPersonas;
+    private String observaciones;
 
     @ManyToOne
-    @JoinColumn(name = "clienteId", nullable = false, foreignKey = @ForeignKey(name = "FK_RESERVA_CLIENTE"))
+    @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_RESERVA_CLIENTE"))
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "mesaId", nullable = false, foreignKey = @ForeignKey(name = "FK_RESERVA_MESA"))
+    @JoinColumn(name = "mesa_id", foreignKey = @ForeignKey(name = "FK_RESERVA_MESA"))
     private Mesa mesa;
 }

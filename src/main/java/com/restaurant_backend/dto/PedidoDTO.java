@@ -12,15 +12,19 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class PedidoDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
     private Date fecha;
 
     @NotNull
-    @Size(max = 30)
     private String estado;
 
     @NotNull
-    private int clienteId;
+    private ClienteDTO cliente;
+
+    @NotNull
+    private UsuarioDTO usuario;
+
+    private MesaDTO mesa;
 }

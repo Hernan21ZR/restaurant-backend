@@ -11,15 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class UsuarioDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
-    @Size(min = 3, max = 70)
+    @Size(min = 3, max = 100)
     private String nombre;
 
-    @NotNull
     @Email
-    @Size(max = 60)
+    @NotNull
     private String correo;
 
     @NotNull
@@ -27,7 +26,5 @@ public class UsuarioDTO {
     private String contrasena;
 
     @NotNull
-    private int roleId;
-
-    private Integer clienteId;
+    private RolDTO rol;
 }

@@ -1,6 +1,6 @@
 package com.restaurant_backend.repository;
 
-import com.restaurant.model.Categoria;
+import com.restaurant_backend.model.Categoria;
 
 public interface ICategoriaRepository extends IGenericRepository<Categoria, Integer>{
 }

@@ -14,14 +14,12 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    @Column(nullable = false, length = 70)
+    @Column(nullable = false, length = 100)
     private String nombre;
-
-    @OneToMany(mappedBy = "categoria")
-    private List<Producto> productos;
 }

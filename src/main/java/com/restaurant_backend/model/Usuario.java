@@ -15,22 +15,18 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
-
-    @Column(nullable = false, length = 70)
-    private String nombre;
-
-    @Column(nullable = false, length = 60, unique = true)
-    private String correo;
+    private Integer id;
 
     @Column(nullable = false, length = 100)
+    private String nombre;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String correo;
+
+    @Column(nullable = false, length = 255)
     private String contrasena;
 
     @ManyToOne
-    @JoinColumn(name = "rolId", nullable = false, foreignKey = @ForeignKey(name = "FK_USUARIO_ROLE"))
+    @JoinColumn(name = "rol_id", nullable = false, foreignKey = @ForeignKey(name = "FK_USUARIO_ROL"))
     private Rol rol;
-
-    @ManyToOne
-    @JoinColumn(name = "clienteId", foreignKey = @ForeignKey(name = "FK_USUARIO_CLIENTE"))
-    private Cliente cliente;
 }

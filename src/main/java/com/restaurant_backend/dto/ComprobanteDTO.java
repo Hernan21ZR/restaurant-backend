@@ -10,15 +10,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ComprobanteDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
-    @Size(max = 30)
     private String tipo;
 
-    @Size(max = 50)
+    @NotNull
     private String formato;
 
     @NotNull
-    private int ventaId;
+    private String numero;
+
+    @NotNull
+    private VentaDTO venta;
 }

@@ -18,21 +18,20 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-
-    @Column(length = 30)
     private String estado;
 
     @ManyToOne
-    @JoinColumn(name = "clienteId", nullable = false, foreignKey = @ForeignKey(name = "FK_PEDIDO_CLIENTE"))
+    @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_PEDIDO_CLIENTE"))
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<DetallePedido> detalles;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", foreignKey = @ForeignKey(name = "FK_PEDIDO_USUARIO"))
+    private Usuario usuario;
 
-    @OneToOne(mappedBy = "pedido")
-    private Venta venta;
+    @ManyToOne
+    @JoinColumn(name = "mesa_id", foreignKey = @ForeignKey(name = "FK_PEDIDO_MESA"))
+    private Mesa mesa;
 }

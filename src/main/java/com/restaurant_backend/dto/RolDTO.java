@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class RolDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
-    @Size(min = 3, max = 50)
     private String nombre;
 }

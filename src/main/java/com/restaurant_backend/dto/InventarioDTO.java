@@ -11,15 +11,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class InventarioDTO {
-    private int id;
+
+    private Integer id;
 
     @NotNull
-    @Size(min = 3, max = 70)
+    @Size(min = 3, max = 100)
     private String nombre;
 
-    @PositiveOrZero
-    private int stock;
+    @NotNull
+    @PositiveOrZero(message = "El stock total no puede ser negativo.")
+    private Integer stockTotal;
 
-    @Size(max = 30)
+    @NotNull
+    @Size(min = 1, max = 50)
     private String unidadMedida;
+
+    @NotNull
+    @PositiveOrZero(message = "El stock mínimo no puede ser negativo.")
+    private Integer minimoStock;
 }

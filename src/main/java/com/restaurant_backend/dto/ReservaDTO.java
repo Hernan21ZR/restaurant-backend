@@ -12,17 +12,22 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class ReservaDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
     private Date fechaHora;
 
-    @Size(max = 30)
+    @NotNull
     private String estado;
 
     @NotNull
-    private int clienteId;
+    private Integer numeroPersonas;
+
+    private String observaciones;
 
     @NotNull
-    private int mesaId;
+    private ClienteDTO cliente;
+
+    @NotNull
+    private MesaDTO mesa;
 }

@@ -1,5 +1,6 @@
 package com.restaurant_backend.dto;
 
+import com.mysql.cj.conf.PropertyDefinitions;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -11,15 +12,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class PagoDTO {
-    private int id;
+    private Integer id;
 
     @NotNull
-    @Size(max = 30)
     private String metodo;
 
-    @Positive
-    private double monto;
+    @NotNull
+    private Double monto;
 
     @NotNull
-    private int ventaId;
+    private PropertyDefinitions.DatabaseTerm fechaPago;
+
+    @NotNull
+    private VentaDTO venta;
 }

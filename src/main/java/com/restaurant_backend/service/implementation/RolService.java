@@ -1,9 +1,9 @@
 package com.restaurant_backend.service.implementation;
 
-import com.restaurant.model.Rol;
-import com.restaurant.repository.IGenericRepository;
-import com.restaurant.repository.IRolRepository;
-import com.restaurant.service.IRolService;
+import com.restaurant_backend.model.Rol;
+import com.restaurant_backend.repository.IGenericRepository;
+import com.restaurant_backend.repository.IRolRepository;
+import com.restaurant_backend.service.IRolService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

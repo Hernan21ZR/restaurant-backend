@@ -17,13 +17,14 @@ public class Mesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    private int numero;
+    @Column(nullable = false)
+    private Integer numero;
 
-    @Column(length = 30)
+    @Column(nullable = false, length = 20)
     private String estado;
 
-    @OneToMany(mappedBy = "mesa")
-    private List<Reserva> reservas;
+    @Column(length = 50)
+    private String ubicacion;
 }

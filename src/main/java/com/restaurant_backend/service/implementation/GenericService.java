@@ -1,7 +1,7 @@
 package com.restaurant_backend.service.implementation;
 
-import com.restaurant.repository.IGenericRepository;
-import com.restaurant.service.IGenericService;
+import com.restaurant_backend.repository.IGenericRepository;
+import com.restaurant_backend.service.IGenericService;
 
 import java.util.List;
 

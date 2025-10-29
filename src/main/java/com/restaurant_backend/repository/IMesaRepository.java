@@ -1,6 +1,6 @@
 package com.restaurant_backend.repository;
 
-import com.restaurant.model.Mesa;
+import com.restaurant_backend.model.Mesa;
 
 public interface IMesaRepository extends IGenericRepository<Mesa, Integer>{
 }

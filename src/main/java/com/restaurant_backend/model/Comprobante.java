@@ -15,15 +15,18 @@ public class Comprobante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
 
-    @Column(nullable = false, length = 30)
-    private String tipo;
+    @Column(nullable = false, length = 50)
+    private String tipo; // Boleta / Factura
 
-    @Column(length = 50)
-    private String formato;
+    @Column(nullable = false, length = 50)
+    private String formato; // Físico / Electrónico
+
+    @Column(nullable = false, unique = true, length = 50)
+    private String numero;
 
     @OneToOne
-    @JoinColumn(name = "ventaId", nullable = false, foreignKey = @ForeignKey(name = "FK_COMPROBANTE_VENTA"))
+    @JoinColumn(name = "venta_id", nullable = false, foreignKey = @ForeignKey(name = "FK_COMPROBANTE_VENTA"))
     private Venta venta;
 }
