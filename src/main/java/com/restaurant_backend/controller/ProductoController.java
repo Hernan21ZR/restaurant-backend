@@ -1,16 +1,26 @@
 package com.restaurant_backend.controller;
 
-import com.restaurant_backend.dto.ProductoDTO;
-import com.restaurant_backend.model.Producto;
-import com.restaurant_backend.service.IProductoService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
+
+import com.restaurant_backend.model.Producto;
+import com.restaurant_backend.service.IProductoService;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.restaurant_backend.dto.ProductoDTO;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/productos")
@@ -35,15 +45,14 @@ public class ProductoController {
     @PostMapping
     public ResponseEntity<Void> save(@Valid @RequestBody ProductoDTO dto) throws Exception {
         Producto obj = service.save(toEntity(dto));
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(obj.getId())
-                .toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductoDTO> update(@Valid @PathVariable("id") Integer id, @RequestBody ProductoDTO dto) throws Exception {
+    public ResponseEntity<ProductoDTO> update(@PathVariable("id") Integer id, @Valid @RequestBody ProductoDTO dto)
+            throws Exception {
         Producto obj = service.update(toEntity(dto), id);
         return ResponseEntity.ok(toDto(obj));
     }
