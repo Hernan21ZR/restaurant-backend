@@ -1,9 +1,8 @@
 package com.restaurant_backend.dto;
 
+import com.restaurant_backend.model.Rol;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,4 +12,9 @@ public class RolDTO {
 
     @NotNull
     private String nombre;
+
+    public RolDTO(Rol rol) {
+        this.id = rol.getId();
+        this.nombre = rol.getNombre();
+    }
 }

@@ -1,16 +1,15 @@
 package com.restaurant_backend.controller;
 
 import com.restaurant_backend.dto.VentaDTO;
+import com.restaurant_backend.model.Pedido;
 import com.restaurant_backend.model.Venta;
+import com.restaurant_backend.repository.IPedidoRepository;
 import com.restaurant_backend.service.IVentaService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,44 +18,47 @@ import java.util.List;
 public class VentaController {
 
     private final IVentaService service;
-    private final ModelMapper modelMapper;
+    private final IPedidoRepository pedidoRepo;
+    private final ModelMapper mapper;
 
     @GetMapping
     public ResponseEntity<List<VentaDTO>> findAll() throws Exception {
-        List<VentaDTO> list = service.findAll().stream().map(this::toDto).toList();
+        List<VentaDTO> list = service.findAll()
+                .stream().map(this::toDto).toList();
         return ResponseEntity.ok(list);
     }
 
+    // 🔥 SOLO PEDIDOS LISTO O ENTREGADO
+    @GetMapping("/pedidos-disponibles")
+    public ResponseEntity<List<Pedido>> pedidosDisponiblesParaVenta() {
+        List<Pedido> pedidos = pedidoRepo.findAll().stream()
+                .filter(p -> "LISTO".equalsIgnoreCase(p.getEstado()) ||
+                        "ENTREGADO".equalsIgnoreCase(p.getEstado()))
+                .toList();
+
+        return ResponseEntity.ok(pedidos);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<VentaDTO> findById(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<VentaDTO> findById(@PathVariable Integer id) throws Exception {
         VentaDTO dto = toDto(service.findById(id));
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> save(@Valid @RequestBody VentaDTO dto) throws Exception {
-        Venta obj = service.save(toEntity(dto));
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(location).build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<VentaDTO> update(@Valid @PathVariable("id") Integer id, @RequestBody VentaDTO dto) throws Exception {
-        Venta obj = service.update(toEntity(dto), id);
-        return ResponseEntity.ok(toDto(obj));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    // 🔥 GENERAR VENTA
+    @PostMapping("/generar/{pedidoId}")
+    public ResponseEntity<VentaDTO> generarVenta(@PathVariable Integer pedidoId) throws Exception {
+        Venta venta = service.generarVenta(pedidoId);
+        return ResponseEntity.ok(toDto(venta));
     }
 
     private VentaDTO toDto(Venta obj) {
-        return modelMapper.map(obj, VentaDTO.class);
-    }
-
-    private Venta toEntity(VentaDTO dto) {
-        return modelMapper.map(dto, Venta.class);
+        VentaDTO dto = new VentaDTO();
+        dto.setId(obj.getId());
+        dto.setFecha(obj.getFecha());
+        dto.setTotal(obj.getTotal());
+        dto.setPedidoId(obj.getPedido().getId());
+        dto.setClienteId(obj.getCliente().getId());
+        return dto;
     }
 }

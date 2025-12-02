@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -14,12 +15,12 @@ public class VentaDTO {
     private Integer id;
 
     @NotNull
-    private Date fecha;
+    private Integer pedidoId;
 
     @NotNull
+    private Integer clienteId;
+
     private Double total;
 
-    private PedidoDTO pedido;
-
-    private ClienteDTO cliente;
+    private Date fecha;
 }

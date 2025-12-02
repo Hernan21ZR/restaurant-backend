@@ -6,24 +6,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class PedidoDTO {
+
     private Integer id;
 
-    @NotNull
     private Date fecha;
 
-    @NotNull
     private String estado;
 
-    @NotNull
+    // Objetos completos para mostrar en tabla
     private ClienteDTO cliente;
+    private UsuarioDTO usuario;
+    private MesaDTO mesa;
+
+    @NotNull(message = "Mesa obligatoria")
+    private Integer mesaId;
+
+    @NotNull(message = "Usuario (mesero) obligatorio")
+    private Integer usuarioId;
+
+    // Cliente puede ser NULL
+    private Integer clienteId;
 
     @NotNull
-    private UsuarioDTO usuario;
-
-    private MesaDTO mesa;
+    private List<DetallePedidoDTO> detalles;
 }

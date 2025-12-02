@@ -1,14 +1,14 @@
 package com.restaurant_backend.dto;
 
+import com.restaurant_backend.model.Cliente;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class ClienteDTO {
+
     private Integer id;
 
     private String telefono;
@@ -17,4 +17,11 @@ public class ClienteDTO {
 
     @NotNull
     private UsuarioDTO usuario;
+
+    public ClienteDTO(Cliente cliente) {
+        this.id = cliente.getId();
+        this.telefono = cliente.getTelefono();
+        this.direccion = cliente.getDireccion();
+        this.usuario = new UsuarioDTO(cliente.getUsuario());
+    }
 }

@@ -23,11 +23,11 @@ public class DetallePedido {
     @Column(nullable = false)
     private Double subtotal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id", nullable = false, foreignKey = @ForeignKey(name = "FK_DETALLE_PEDIDO_PEDIDO"))
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producto_id", nullable = false, foreignKey = @ForeignKey(name = "FK_DETALLE_PEDIDO_PRODUCTO"))
     private Producto producto;
 }

@@ -3,6 +3,7 @@ package com.restaurant_backend.controller;
 import java.net.URI;
 import java.util.List;
 
+import com.restaurant_backend.model.Categoria;
 import com.restaurant_backend.model.Producto;
 import com.restaurant_backend.service.IProductoService;
 import org.modelmapper.ModelMapper;
@@ -64,10 +65,30 @@ public class ProductoController {
     }
 
     private ProductoDTO toDto(Producto obj) {
-        return mapper.map(obj, ProductoDTO.class);
+        ProductoDTO dto = new ProductoDTO();
+        dto.setId(obj.getId());
+        dto.setNombre(obj.getNombre());
+        dto.setDescripcion(obj.getDescripcion());
+        dto.setPrecio(obj.getPrecio());
+        dto.setStockActual(obj.getStockActual());
+        dto.setCategoriaId(obj.getCategoria().getId());
+        return dto;
     }
 
+
     private Producto toEntity(ProductoDTO dto) {
-        return mapper.map(dto, Producto.class);
+        Producto obj = new Producto();
+        obj.setId(dto.getId());
+        obj.setNombre(dto.getNombre());
+        obj.setDescripcion(dto.getDescripcion());
+        obj.setPrecio(dto.getPrecio());
+        obj.setStockActual(dto.getStockActual());
+
+        Categoria cat = new Categoria();
+        cat.setId(dto.getCategoriaId());
+        obj.setCategoria(cat);
+
+        return obj;
     }
+
 }

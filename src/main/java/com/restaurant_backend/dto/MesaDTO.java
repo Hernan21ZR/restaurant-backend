@@ -1,5 +1,6 @@
 package com.restaurant_backend.dto;
 
+import com.restaurant_backend.model.Mesa;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +19,11 @@ public class MesaDTO {
     private String estado;
 
     private String ubicacion;
+
+    public MesaDTO(Mesa mesa) {
+        this.id = mesa.getId();
+        this.numero = mesa.getNumero();
+        this.estado = mesa.getEstado();
+        this.ubicacion = mesa.getUbicacion();
+    }
 }

@@ -1,6 +1,5 @@
 package com.restaurant_backend.dto;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,16 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class DetallePedidoDTO {
     private Integer id;
-
-    @NotNull
     private Integer cantidad;
 
-    @NotNull
+    // Datos del producto para mostrar en tabla
+    private Integer productoId;
+    private String productoNombre;
+    private Double productoPrecio;
+
     private Double subtotal;
-
-    @NotNull
-    private PedidoDTO pedido;
-
-    @NotNull
-    private ProductoDTO producto;
 }

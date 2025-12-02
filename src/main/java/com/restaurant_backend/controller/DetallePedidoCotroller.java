@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/detallePedido")
+@RequestMapping("/detallePedidos")
 @RequiredArgsConstructor
 public class DetallePedidoCotroller {
     private final IDetallePedidoService service;

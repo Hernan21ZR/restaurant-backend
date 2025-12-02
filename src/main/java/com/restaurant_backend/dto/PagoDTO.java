@@ -6,10 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class PagoDTO {
+
     private Integer id;
 
     @NotNull
@@ -18,9 +21,8 @@ public class PagoDTO {
     @NotNull
     private Double monto;
 
-    @NotNull
-    private PropertyDefinitions.DatabaseTerm fechaPago;
+    private Date fechaPago;
 
     @NotNull
-    private VentaDTO venta;
+    private Integer ventaId;
 }

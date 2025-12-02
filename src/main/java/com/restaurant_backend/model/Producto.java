@@ -29,15 +29,10 @@ public class Producto {
     private Double precio;
 
     @Column(nullable = false)
-    private Integer stockActual; // stock individual del producto
+    private Integer stockActual;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_PRODUCTO_CATEGORIA"))
     private Categoria categoria;
-
-    @ManyToOne
-    @JoinColumn(name = "inventario_id", nullable = false,
-            foreignKey = @ForeignKey(name = "FK_PRODUCTO_INVENTARIO"))
-    private Inventario inventario;
 }
