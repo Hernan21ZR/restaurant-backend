@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ClienteService extends GenericService<Cliente, Integer> implements IClienteService {
+
     private final IClienteRepository repo;
 
     @Override
